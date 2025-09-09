@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZAPPS • CV Builder</title>
+  <meta name="description" content="Gerador de currículos com preview simultâneo e resumo por IA via proxy (Vercel)." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">
+        <img src="assets/img/logo-light.png" alt="ZAPPS CV Builder" class="logo" onerror="this.src='assets/img/logo-dark.png'">
+        <span class="title">CV Builder</span>
+      </div>
+      <nav class="nav">
+        <a href="#preview">Preview</a>
+        <button id="btnSettings" class="btn sub small">⚙️ IA</button>
+      </nav>
+    </div>
+  </header>
+  <main class="app">
+    <section class="pane left" id="formPane">
+      <h1>Dados do currículo</h1>
+      <div id="formRoot"></div>
+    </section>
+    <section class="pane right">
+      <div class="toolbar">
+        <button class="btn sub small" id="btnRandom">Gerar dados aleatórios</button>
+        <button class="btn sub small" id="btnClear">Limpar</button>
+        <button class="btn brand" id="btnPrint">Baixar PDF</button>
+      </div>
+      <article id="preview" class="cv t-minimal" aria-label="Pré-visualização do Currículo"></article>
+    </section>
+  </main>
+  <dialog id="settings">
+    <form method="dialog" class="modal">
+      <h3>Configurações da IA (Resumo)</h3>
+      <label>Endpoint do proxy</label>
+      <input id="cfg_endpoint" placeholder="https://..." />
+      <div class="row two">
+        <div>
+          <label>Modelo</label>
+          <input id="cfg_model" value="gpt-4o-mini" />
+        </div>
+        <div>
+          <label>Tom</label>
+          <select id="cfg_tone">
+            <option value="profissional">Profissional</option>
+            <option value="direto">Direto</option>
+            <option value="criativo">Criativo</option>
+          </select>
+        </div>
+      </div>
+      <div class="stack end">
+        <button class="btn sub small" id="cfgClose">Fechar</button>
+        <button class="btn brand small" id="cfgSave">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+  <footer class="site-footer">
+    <div class="wrap">© <span id="year"></span> ZAPPS • MIT</div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
